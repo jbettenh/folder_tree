@@ -23,6 +23,7 @@ def main():
     args = arguments()
 
     for dirpath, dir, files in os.walk(args.path):
+        path = dirpath.split('/')
         print(dirpath)
 
 
