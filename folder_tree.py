@@ -22,8 +22,8 @@ def arguments():
 def main():
     args = arguments()
 
-    for foldername in os.walk(args.path):
-        print(f'Folder: {foldername}')
+    for dirpath, dir, files in os.walk(args.path):
+        print(dirpath)
 
 
 if __name__ == '__main__':
