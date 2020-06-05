@@ -4,7 +4,7 @@
 import argparse
 import os
 import docx
-# from docx.enum.dml import MSO_THEME_COLOR_INDEX
+from docx.enum.dml import MSO_THEME_COLOR_INDEX
 
 
 def dir_path(string):
@@ -44,11 +44,10 @@ def add_hyperlink(paragraph, text, url):
 
     # A workaround for the lack of a hyperlink style (doesn't go purple after using the link)
     # Delete this if using a template that has the hyperlink style in it
-  #  r.font.color.theme_color = MSO_THEME_COLOR_INDEX.HYPERLINK
-   # r.font.underline = True
+    r.font.color.theme_color = MSO_THEME_COLOR_INDEX.HYPERLINK
+    r.font.underline = True
 
     return hyperlink
-
 
 
 def main():
