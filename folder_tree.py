@@ -60,7 +60,7 @@ def main():
     document = docx.Document()
     p = document.add_paragraph('Folder: ')
     add_hyperlink(p, 'folder name', dirpath)
-    document.save('demo_hyperlink.docx')
+    document.save('test/demo_hyperlink.docx')
 
 if __name__ == '__main__':
     main()
