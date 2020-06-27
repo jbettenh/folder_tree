@@ -53,13 +53,14 @@ def add_hyperlink(paragraph, text, url):
 def main():
     args = arguments()
 
+    maindir = (os.path.basename(args.path))
+    print(maindir)
+
     for dirpath, dirnames, files in os.walk(args.path):
         path = dirpath.split('/')
-        print(dirnames)
-
-    for entry in os.listdir(args.path):
-        if os.path.isdir(os.path.join(args.path, entry)):
-            print(entry)
+        if dirnames:
+            for folder in dirnames:
+                print('-' + folder)
 
     document = docx.Document()
     p = document.add_paragraph('Folder: ')
