@@ -2,21 +2,37 @@
 # This will list out all folders and subfolders for a given directory.
 
 import argparse
-import os
+from pathlib import Path
 import docx
 from docx.enum.dml import MSO_THEME_COLOR_INDEX
 
+# prefix components:
+space =  '    '
+branch = '│   '
+# pointers:
+tee =    '├── '
+last =   '└── '
 
-def dir_path(string):
-    if os.path.isdir(string):
-        return string
-    else:
-        raise NotADirectoryError(string)
+
+def tree(dir_path: Path, prefix: str=''):
+    """A recursive generator, given a directory Path object
+    will yield a visual tree structure line by line
+    with each line prefixed by the same characters
+    """
+    contents = list(dir_path.iterdir())
+    # contents each get pointers that are ├── with a final └── :
+    pointers = [tee] * (len(contents) - 1) + [last]
+    for pointer, path in zip(pointers, contents):
+        yield prefix + pointer + path.name
+        if path.is_dir(): # extend the prefix and recurse:
+            extension = branch if pointer == tee else space
+            # i.e. space because last, └── , above so no more |
+            yield from tree(path, prefix=prefix+extension)
 
 
 def arguments():
     parser = argparse.ArgumentParser(description='Parser')
-    parser.add_argument('--path', type=dir_path, help='This is the path to the folder')
+    parser.add_argument('--path', type=Path,default=Path(__file__).absolute().parent / "Users", help='This is the path to the folder')
 
     return parser.parse_args()
 
@@ -53,14 +69,14 @@ def add_hyperlink(paragraph, text, url):
 def main():
     args = arguments()
 
-    maindir = (os.path.basename(args.path))
-    print(maindir)
+    for line in tree(args.path/ 'Documents'):
+        print(line)
 
-    for dirpath, dirnames, files in os.walk(args.path):
-        path = dirpath.split('/')
-        if dirnames:
-            for folder in dirnames:
-                print('-' + folder)
+   # for dirpath, dirnames, files in os.walk(args.path):
+    #    path = dirpath.split('/')
+     #   if dirnames:
+      #      for folder in dirnames:
+       #         print('-' + folder)
 
     document = docx.Document()
     p = document.add_paragraph('Folder: ')
