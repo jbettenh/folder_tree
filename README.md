@@ -24,7 +24,8 @@ June 27, 2020 - wip
 July 12, 2020 - console print
 
 ## References ##
-https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python
+[Stack overflow - Python tree](https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python)  
+[Stack overflow - Python docx](https://stackoverflow.com/questions/47666642/adding-an-hyperlink-in-msword-by-using-python-docx/47666747)
 
 ## License ##
 MIT License
