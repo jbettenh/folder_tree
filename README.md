@@ -20,7 +20,7 @@ The main file to run is:
     folder_tree.py
 
 ## History ##
-June 27, 2020 - wip
+June 27, 2020 - wip  
 July 12, 2020 - console print
 
 ## References ##
