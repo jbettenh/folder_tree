@@ -1,5 +1,5 @@
 #! python 3
-# This will list out all folders and subfolders for a given directory.
+""" This will list out all folders and subfolders for a given directory. C:Usersjbettenh"""
 
 import argparse
 from pathlib import Path
@@ -89,14 +89,8 @@ def add_hyperlink(paragraph, text, url):
 def main():
     args = arguments()
 
-    for line in tree(args.path/ 'Documents', limit_to_directories=True):
+    for line in tree(args.path, limit_to_directories=True):
         print(line)
-
-   # for dirpath, dirnames, files in os.walk(args.path):
-    #    path = dirpath.split('/')
-     #   if dirnames:
-      #      for folder in dirnames:
-       #         print('-' + folder)
 
     document = docx.Document()
     p = document.add_paragraph('Folder: ')
